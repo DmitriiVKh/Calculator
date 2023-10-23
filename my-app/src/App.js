@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { evaluate } from 'mathjs';
 
 export const App = () => {
-	const digitButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+	const digitButtons = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, '+', '-', '=', 'C'];
 
 	const [currentState, setCurrentState] = useState('');
 	const [result, setResult] = useState(0);
@@ -59,16 +59,20 @@ export const App = () => {
 						onClick={() => {
 							if (Number.isInteger(button)) {
 								digitClick(button.toString());
+							} else if (button === '+') {
+								plusClick();
+							} else if (button === '-') {
+								minusClick();
+							} else if (button === '=') {
+								equalsClick();
+							} else if (button === 'C') {
+								resetClick();
 							}
 						}}
 					>
 						{button}
 					</button>
 				))}
-				<button onClick={plusClick}>+</button>
-				<button onClick={minusClick}>-</button>
-				<button onClick={equalsClick}>=</button>
-				<button onClick={resetClick}>C</button>
 			</div>
 		</div>
 	);
